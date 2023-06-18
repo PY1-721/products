@@ -1,12 +1,22 @@
-#讀取檔案
+#輸入模組
+import os #operating system
+
+#產生空清單
 products = []
-with open('products.csv', 'r', encoding='utf-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue #仍在迴圈之中，跳過單一迴
-		name, price = line.strip().split(',') #split後會變成清單
-		products.append([name,price])
-print(products)
+
+#讀取檔案
+if os.path.isfile('products.csv'): #確認檔案是否存在
+	print('yeah!找到檔案了！')
+	with open('products.csv', 'r', encoding='utf-8') as f:
+		for line in f:
+			if '商品,價格' in line:
+				continue #仍在迴圈之中，跳過單一迴
+			name, price = line.strip().split(',') #split後會變成清單
+			products.append([name,price])
+	print(products)
+else:
+	print('缺少檔案！')
+
 
 #讓使用者輸入
 while True:
